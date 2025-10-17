@@ -1,0 +1,125 @@
+<!doctype html>
+
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Para Maria Luiza — Você é meu tudo</title>
+  <meta name="description" content="Uma página simples em homenagem à Maria Luiza.">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #222;
+      overflow: hidden;
+    }.card {
+  width: 100%;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 36px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: clamp(24px, 6vw, 40px);
+  margin-bottom: 12px;
+  color: #C2185B;
+}
+
+p.message {
+  font-size: clamp(18px, 5vw, 28px);
+  margin-top: 20px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  color: #333;
+}
+
+p.name {
+  font-size: clamp(20px, 5vw, 32px);
+  font-weight: 800;
+  color: #C2185B;
+}
+
+.hearts { position: absolute; inset: 0; pointer-events: none; }
+.heart {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #FF6B9A;
+  transform: rotate(-45deg);
+  border-radius: 4px;
+  opacity: 0.9;
+  animation: floatUp linear infinite;
+}
+.heart:before, .heart:after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: inherit;
+}
+.heart:before { top: -9px; left: 0; width: 18px; height: 18px; }
+.heart:after { left: 9px; top: 0; width: 18px; height: 18px; }
+
+@keyframes floatUp {
+  0% { transform: translateY(40vh) scale(0.9) rotate(-45deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(-40vh) scale(1.2) rotate(-45deg); opacity: 0; }
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #C2185B;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover { background-color: #a3154e; }
+
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="hearts" aria-hidden="true"></div>
+    <h1>Para Maria Luiza 💖</h1>
+    <p class="message">Você foi a melhor coisa que aconteceu na minha vida.</p>
+    <p class="name">Eu te amo, Maria Luiza.</p>
+    <button onclick="replayHearts()">Rever animação</button>
+  </div>  <script>
+    function spawnHearts(count = 15) {
+      const container = document.querySelector('.hearts');
+      container.innerHTML = '';
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.width = heart.style.height = (10 + Math.random() * 25) + 'px';
+        heart.style.animationDuration = (3 + Math.random() * 4) + 's';
+        heart.style.animationDelay = (Math.random() * 2) + 's';
+        container.appendChild(heart);
+      }
+    }
+
+    function replayHearts() {
+      spawnHearts();
+    }
+
+    // Gera corações continuamente para que o link funcione sempre que aberto
+    setInterval(spawnHearts, 5000);
+    spawnHearts();
+  </script>
+</body></html>
